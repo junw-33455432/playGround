@@ -12,9 +12,9 @@ on:
 jobs:
   GetJDKVersion:
     runs-on: ubuntu-latest
-    steps:
-      outputs:
+    outputs:
         JDKVersion: ${{ steps.set-step.outputs.jdk-version }}
+    steps:
       # Checks-out your repository under $GITHUB_WORKSPACE
       - name: Get JDK Version
         uses: actions/checkout@v3
