@@ -37,7 +37,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          java-version: '${{needs.GetJDKVersion.outputs.jdk-version}}''
+          java-version: '${{needs.GetJDKVersion.outputs.jdk-version}}'
 
       # Check JDK Version
       - name: Check JDK Version
