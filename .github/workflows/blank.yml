@@ -34,12 +34,10 @@ jobs:
     steps:
       # Set up JDK and uses the version got from "Get JDK Version" step 
       - name: Set up JDK
-        env:
-          JDKVersion: ${{needs.GetJDKVersion.outputs.jdk-version}}
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          java-version: "$JDKVersion"
+          java-version: '${{needs.GetJDKVersion.outputs.jdk-version}}''
 
       # Check JDK Version
       - name: Check JDK Version
