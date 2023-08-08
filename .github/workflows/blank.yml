@@ -32,12 +32,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: GetJDKVersion
     steps:
-      - env:
-          JDKVersion: ${{needs.GetJDKVersion.outputs.jdk-version}}
-        run: |
-          echo "JDK Versinon will set to: $JDKVersion"
       # Set up JDK and uses the version got from "Get JDK Version" step 
       - name: Set up JDK
+        env:
+          JDKVersion: ${{needs.GetJDKVersion.outputs.jdk-version}}
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
