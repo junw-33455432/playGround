@@ -13,6 +13,8 @@ jobs:
   GetJDKVersion:
     runs-on: ubuntu-latest
     steps:
+      outputs:
+        JDKVersion: ${{ steps.set-step.outputs.jdk-version }}
       # Checks-out your repository under $GITHUB_WORKSPACE
       - name: Get JDK Version
         uses: actions/checkout@v3
@@ -21,13 +23,17 @@ jobs:
 
       # Get current JDK version and set it to GitHub env
       - name: Set JDK Version
+        id: set-step
         run: |
           JDKVersion=$(cat JDKVersion)
-          echo "JDKVersion=$JDKVersion" >> $GITHUB_ENV
+          echo "::set-output name=jdk-version::$JDKVersion"
 
   SetJDKVersion:
     runs-on: ubuntu-latest
+    need: GetJDKVersion
     steps:
+      - env:
+          JDKVersion: ${{needs.GetJDKVersion.outputs.jdk-version}}
       # Set up JDK and uses the version got from "Get JDK Version" step 
       - name: Set up JDK
         uses: actions/setup-java@v3
