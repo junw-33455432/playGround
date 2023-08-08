@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Get JDK Version:
+  GetJDKVersion:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE
@@ -25,7 +25,7 @@ jobs:
           JDKVersion=$(cat JDKVersion)
           echo "JDKVersion=$JDKVersion" >> $GITHUB_ENV
 
-  Set JDK Version:
+  SetJDKVersion:
     runs-on: ubuntu-latest
     steps:
       # Set up JDK and uses the version got from "Get JDK Version" step 
