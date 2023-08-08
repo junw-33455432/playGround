@@ -22,11 +22,14 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE and get current JDK version
+      # Checks-out your repository under $GITHUB_WORKSPACE
       - name: Get JDK Version
         uses: actions/checkout@v3
         with:
           fetch-depth: 2
+
+      # Get current JDK version and set it to GitHub env
+      - name: Set JDK Version
         run: |
           JDKVersion=$(cat JDKVersion)
           echo "JDKVersion=$JDKVersion" >> $GITHUB_ENV
@@ -37,5 +40,8 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '${{ env.JDKVersion }}'
+
+      # Check JDK Version
+      - name: Check JDK Version
         run: |
           echo $(java -v)
