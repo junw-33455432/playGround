@@ -44,4 +44,4 @@ jobs:
       # Check JDK Version
       - name: Check JDK Version
         run: |
-          echo $(java -v)
+          echo $(java --version)
