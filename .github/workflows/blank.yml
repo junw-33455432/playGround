@@ -30,7 +30,7 @@ jobs:
 
   SetJDKVersion:
     runs-on: ubuntu-latest
-    need: GetJDKVersion
+    needs: GetJDKVersion
     steps:
       - env:
           JDKVersion: ${{needs.GetJDKVersion.outputs.jdk-version}}
