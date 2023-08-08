@@ -35,13 +35,13 @@ jobs:
       - env:
           JDKVersion: ${{needs.GetJDKVersion.outputs.jdk-version}}
         run: |
-          echo 'JDK Versinon will set to: $JDKVersion'
+          echo "JDK Versinon will set to: $JDKVersion"
       # Set up JDK and uses the version got from "Get JDK Version" step 
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          java-version: '${{ env.JDKVersion }}'
+          java-version: '${{ JDKVersion }}'
 
       # Check JDK Version
       - name: Check JDK Version
