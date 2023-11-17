@@ -1,4 +1,4 @@
-name: GO Service CI
+name: CI
 
 on:
   push:
@@ -11,21 +11,45 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:
 
-jobs:
-  goServiceUnitTest:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./goService
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-      - name: unit test
-        run: |
-          ls -al
-          echo "goService unit test is runnning"
+  jobs:
+    goServiceUnitTest:
+      runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: ./goService
+      steps:
+        - name: checkout code
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 2
+        - name: unit test
+          run: |
+            ls -al
+            echo "goService unit test is runnning"
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - './javaService/**'
+  pull_request:
+    branches: [ "main" ]
+
+  jobs:
+    javaServiceUnitTest:
+      runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: ./javaService
+      steps:
+        - name: checkout code
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 2
+        - name: unit test
+          run: |
+            ls -al
+            echo "javaService unit test is runnning"
 
   # GetJDKVersion:
   #   runs-on: ubuntu-latest
