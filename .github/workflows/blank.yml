@@ -53,6 +53,7 @@ jobs:
   #     - name: Set JDK Version
   #       id: set-step
   #       run: |
+  #         cd javaService
   #         JDKVersion=$(cat JDKVersion)
   #         echo "jdk-version=$JDKVersion" >> "$GITHUB_OUTPUT"
 
