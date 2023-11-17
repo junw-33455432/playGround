@@ -1,8 +1,10 @@
-name: CI
+name: GO Service CI
 
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - './goService/**'
   pull_request:
     branches: [ "main" ]
 
@@ -22,21 +24,8 @@ jobs:
           fetch-depth: 2
       - name: unit test
         run: |
+          ls -al
           echo "goService unit test is runnning"
-      
-  javaServiceUnitTest:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./javaService
-    steps:
-      - name: javaService unit test
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-      - name: unit test
-        run: |
-          echo "javaService unit test is runnning"
 
   # GetJDKVersion:
   #   runs-on: ubuntu-latest
