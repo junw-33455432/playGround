@@ -12,31 +12,32 @@ on:
 jobs:
   goServiceUnitTest:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./goService
     steps:
       - name: checkout code
         uses: actions/checkout@v3
-        working-directory: ./goService
         with:
           fetch-depth: 2
       - name: unit test
-        working-directory: ./goService
         run: |
           echo "goService unit test is runnning"
       
   javaServiceUnitTest:
     runs-on: ubuntu-latest
-    working-directory: ./javaService
+    defaults:
+      run:
+        working-directory: ./javaService
     steps:
       - name: javaService unit test
         uses: actions/checkout@v3
-        working-directory: ./javaService
         with:
           fetch-depth: 2
       - name: unit test
-        working-directory: ./javaService
         run: |
           echo "javaService unit test is runnning"
-          
+
   # GetJDKVersion:
   #   runs-on: ubuntu-latest
   #   outputs:
