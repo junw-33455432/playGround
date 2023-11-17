@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        working-directory: ./goService
         uses: actions/checkout@v3
+        working-directory: ./goService
         with:
           fetch-depth: 2
       - name: unit test
@@ -28,14 +28,15 @@ jobs:
     working-directory: ./javaService
     steps:
       - name: javaService unit test
-        working-directory: ./goService
         uses: actions/checkout@v3
+        working-directory: ./javaService
         with:
           fetch-depth: 2
       - name: unit test
-        working-directory: ./goService
+        working-directory: ./javaService
         run: |
           echo "javaService unit test is runnning"
+          
   # GetJDKVersion:
   #   runs-on: ubuntu-latest
   #   outputs:
