@@ -7,39 +7,62 @@ on:
     branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # workflow_dispatch:
 
 jobs:
-  GetJDKVersion:
+  goServiceUnitTest:
     runs-on: ubuntu-latest
-    outputs:
-        JDKVersion: ${{ steps.set-step.outputs.jdk-version }}
+    working-directory: ./goService
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE
-      - name: Get JDK Version
+      - name: checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 2
-
-      # Get current JDK version and set it to GitHub env
-      - name: Set JDK Version
-        id: set-step
+      - name: unit test
         run: |
-          JDKVersion=$(cat JDKVersion)
-          echo "jdk-version=$JDKVersion" >> "$GITHUB_OUTPUT"
-
-  SetJDKVersion:
+          echo "goService unit test is runnning"
+      
+  javaServiceUnitTest:
     runs-on: ubuntu-latest
-    needs: GetJDKVersion
+    working-directory: ./javaService
     steps:
-      # Set up JDK and uses the version got from "Get JDK Version" step 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
+      - name: javaService unit test
+        uses: actions/checkout@v3
         with:
-          distribution: 'adopt'
-          java-version: ${{needs.GetJDKVersion.outputs.JDKVersion}}
-
-      # Check JDK Version
-      - name: Check JDK Version
+          fetch-depth: 2
+      - name: unit test
         run: |
-          echo $(java --version)
+          echo "javaService unit test is runnning"
+  # GetJDKVersion:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #       JDKVersion: ${{ steps.set-step.outputs.jdk-version }}
+  #   steps:
+  #     # Checks-out your repository under $GITHUB_WORKSPACE
+  #     - name: Get JDK Version
+  #       uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 2
+
+  #     # Get current JDK version and set it to GitHub env
+  #     - name: Set JDK Version
+  #       id: set-step
+  #       run: |
+  #         JDKVersion=$(cat JDKVersion)
+  #         echo "jdk-version=$JDKVersion" >> "$GITHUB_OUTPUT"
+
+  # SetJDKVersion:
+  #   runs-on: ubuntu-latest
+  #   needs: GetJDKVersion
+  #   steps:
+  #     # Set up JDK and uses the version got from "Get JDK Version" step 
+  #     - name: Set up JDK
+  #       uses: actions/setup-java@v3
+  #       with:
+  #         distribution: 'adopt'
+  #         java-version: ${{needs.GetJDKVersion.outputs.JDKVersion}}
+
+  #     # Check JDK Version
+  #     - name: Check JDK Version
+  #       run: |
+  #         echo $(java --version)
